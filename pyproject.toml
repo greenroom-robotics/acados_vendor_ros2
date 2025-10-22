@@ -8,8 +8,7 @@ authors = ["Nathan Edwards <nathan.edwards@greenroomrobotics.com>"]
 python = ">=3.10"
 casadi = "^3.7.1"
 future-fstrings = "^1.2.0"
-
-[tool.poetry.dev-dependencies]
+numpy = "^1.26.4"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
