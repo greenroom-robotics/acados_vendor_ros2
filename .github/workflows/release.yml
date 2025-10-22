@@ -7,7 +7,6 @@ on:
         type: choice
         description: 'If not specified, all packages will be released.'
         options:
-          - ""
           - acados_vendor_ros2
 
 jobs:
@@ -16,18 +15,12 @@ jobs:
       fail-fast: true
       matrix:
         job:
-          - runner: buildjet-2vcpu-ubuntu-2204
+          - runner: 4vcpu-ubuntu-2404
             arch: amd64
             ros_distro: jazzy
-          - runner: buildjet-2vcpu-ubuntu-2204-arm
+          - runner: 4vcpu-ubuntu-2404-arm
             arch: arm64
             ros_distro: jazzy
-          - runner: buildjet-2vcpu-ubuntu-2204
-            arch: amd64
-            ros_distro: iron
-          - runner: buildjet-2vcpu-ubuntu-2204-arm
-            arch: arm64
-            ros_distro: iron
 
     name: Build - ${{ matrix.job.arch }} - ${{ matrix.job.ros_distro }}
     runs-on: ${{ matrix.job.runner }}
@@ -52,7 +45,7 @@ jobs:
 
   release:
     name: Create Release
-    runs-on: buildjet-2vcpu-ubuntu-2204
+    runs-on: 4vcpu-ubuntu-2404
     needs:
       - build
 
