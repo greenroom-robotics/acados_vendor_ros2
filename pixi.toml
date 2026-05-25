@@ -10,6 +10,7 @@ preview = ["pixi-build"]
 
 [dependencies]
 acados_vendor_ros2 = { path = "." }
+mise = "*"
 
 [package]
 name = "acados_vendor_ros2"
