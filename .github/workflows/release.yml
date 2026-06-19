@@ -87,8 +87,8 @@ jobs:
           token: ${{ secrets.API_TOKEN_GITHUB }}
           package_dir: ./
           package: ${{ github.event.inputs.package }}
-          github_release: true
+          github_release: false
           public: false
           changelog: false
           skip_build: true
-          skip_tag: false
+          skip_tag: true
