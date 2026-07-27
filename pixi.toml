@@ -1,7 +1,7 @@
 [workspace]
 name = "acados_vendor_ros2"
 channels = [
-  "http://localhost:8000/general",
+  "http://localhost:12222/general",
   "https://prefix.dev/robostack-kilted",
   "https://prefix.dev/conda-forge",
 ]
@@ -10,7 +10,7 @@ preview = ["pixi-build"]
 
 [dependencies]
 acados_vendor_ros2 = { path = "." }
-mise = "*"
+mise = ">=6,<7"
 
 [package]
 name = "acados_vendor_ros2"
@@ -21,7 +21,7 @@ authors = ["Thibault Poignonec <thibault.poignonec@gmail.com>"]
 
 [package.build.backend]
 name = "pixi-build-ros-gr"
-version = "*"
+version = ">=0.5,<0.6"
 
 [package.build.config]
 mode = "pixi-native"
