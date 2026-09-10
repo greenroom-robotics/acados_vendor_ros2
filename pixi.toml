@@ -1,50 +1,73 @@
 [workspace]
 name = "acados_vendor_ros2"
 channels = [
-  "http://localhost:12222/general",
+  "az://stgrcondachannel.blob.core.windows.net/general",
   "https://prefix.dev/robostack-kilted",
   "https://prefix.dev/conda-forge",
 ]
 platforms = ["linux-64", "linux-aarch64"]
 preview = ["pixi-build"]
 
-[dependencies]
-acados_vendor_ros2 = { path = "." }
-mise = ">=6,<7"
-
 [package]
-name = "acados_vendor_ros2"
-version = "1.0.4"
+name        = "acados_vendor_ros2"
+version     = "1.0.4"
 description = "Vendored version of acados."
-license = "Apache-2.0"
-authors = ["Thibault Poignonec <thibault.poignonec@gmail.com>"]
+license     = "Apache-2.0"
+authors     = ["Thibault Poignonec <thibault.poignonec@gmail.com>"]
 
-[package.build.backend]
-name = "pixi-build-ros-gr"
-version = ">=0.5,<0.6"
-
-[package.build.config]
-mode = "pixi-native"
-build-type = "ament_cmake"
-distro = "kilted"
-
-build-number = 1
 [package.build-dependencies]
 patchelf = "*"
 
 [package.host-dependencies]
-ros-kilted-ament-cmake = "*"
-ros-kilted-ament-cmake-python = "*"
+ros-kilted-ament-cmake                = "*"
+ros-kilted-ament-cmake-python         = "*"
 ros-kilted-ament-cmake-vendor-package = "*"
-pkg-config = "*"
-git = "*"
-make = "*"
-gfortran = "*"
-cython = "*"
-numpy = "*"
+pkg-config                            = "*"
+git                                   = "*"
+make                                  = "*"
+gfortran                              = "*"
+cython                                = "*"
+numpy                                 = "*"
 
 [package.run-dependencies]
 python = "*"
-numpy = "*"
-scipy = "*"
+numpy  = "*"
+scipy  = "*"
 casadi = "*"
+
+[dependencies.acados_vendor_ros2]
+path   = "."
+extras = ["test"]
+
+[package.build.backend]
+name    = "pixi-build-ros-gr"
+version = ">=0.5,<0.6"
+
+[package.build.config]
+mode         = "pixi-native"
+build-type   = "ament_cmake"
+distro       = "kilted"
+build-number = 1
+
+[package.extra-dependencies.test]
+ros-dev-tools-meta                    = "*"
+ros-kilted-ament-cmake-python         = "*"
+ros-kilted-ament-cmake-vendor-package = "*"
+pkg-config                            = "*"
+git                                   = "*"
+make                                  = "*"
+gfortran                              = "*"
+cython                                = "*"
+numpy                                 = "*"
+patchelf                              = "*"
+
+[tasks]
+build = "colcon build --packages-select acados_vendor_ros2 --symlink-install"
+
+[tasks.colcon-test]
+cmd        = "bash -c 'colcon test --packages-select acados_vendor_ros2 --retest-until-pass 3 --event-handlers console_direct+ || [ $? -eq 5 ]'"
+depends-on = ["build"]
+
+[tasks.test]
+cmd        = "colcon test-result --all --verbose"
+depends-on = ["colcon-test"]
