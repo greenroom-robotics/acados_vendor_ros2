@@ -30,10 +30,14 @@ cython                                = "*"
 numpy                                 = "*"
 
 [package.run-dependencies]
-python = "*"
-numpy  = "*"
-scipy  = "*"
-casadi = "*"
+python          = "*"
+numpy           = "*"
+scipy           = "*"
+casadi          = "*"
+make            = "*"
+cmake           = "*"
+c-compiler      = "*"
+matplotlib-base = "*"
 
 [dependencies.acados_vendor_ros2]
 path   = "."
@@ -41,7 +45,7 @@ extras = ["test"]
 
 [package.build.backend]
 name    = "pixi-build-ros-gr"
-version = ">=0.5,<0.6"
+version = "*"
 
 [package.build.config]
 mode         = "pixi-native"
