@@ -30,10 +30,14 @@ cython                                = "*"
 numpy                                 = "*"
 
 [package.run-dependencies]
-python = "*"
-numpy  = "*"
-scipy  = "*"
-casadi = "*"
+python          = "*"
+numpy           = "*"
+scipy           = "*"
+casadi          = "*"
+make            = "*"
+cmake           = "*"
+c-compiler      = "*"
+matplotlib-base = "*"
 
 [dependencies.acados_vendor_ros2]
 path   = "."
