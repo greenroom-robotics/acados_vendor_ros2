@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.10)
 project(acados_vendor_ros2)
 
-set(ACADOS_VERSION "0.5.1")
+set(ACADOS_VERSION "0.5.2")
 
 # CMake options
 option(FORCE_BUILD_VENDOR_PKG
@@ -76,20 +76,6 @@ if(${BUILD_ACADOS_TEMPLATE})
     PACKAGE_DIR ${ACADOS_PYTHON_INTERFACE_PCK_DIR}
   )
   set(ACADOS_PYTHON_INTERFACE_PATH ${CMAKE_INSTALL_PREFIX}/${PYTHON_INSTALL_DIR}/acados_template) # Python package after install
-  install(CODE "
-    set(template_dir \"\$ENV{DESTDIR}${ACADOS_PYTHON_INTERFACE_PATH}\")
-    if(NOT IS_DIRECTORY \"\${template_dir}\")
-      message(FATAL_ERROR \"acados_template not installed in '\${template_dir}'\")
-    endif()
-    file(GLOB_RECURSE template_sources \"\${template_dir}/*.py\" \"\${template_dir}/*.pyx\" \"\${template_dir}/*.pxd\")
-    foreach(source IN LISTS template_sources)
-      file(READ \"\${source}\" contents)
-      string(REGEX REPLACE \"^# -\\\\*- coding: future_fstrings -\\\\*-\n\" \"\" stripped \"\${contents}\")
-      if(NOT stripped STREQUAL contents)
-        file(WRITE \"\${source}\" \"\${stripped}\")
-      endif()
-    endforeach()
-  ")
   message(
     STATUS
     "The Python interface (acados_template) \

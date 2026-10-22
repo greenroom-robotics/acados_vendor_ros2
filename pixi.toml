@@ -38,6 +38,7 @@ make            = "*"
 cmake           = "*"
 c-compiler      = "*"
 matplotlib-base = "*"
+deprecated      = "*"
 
 [dependencies.acados_vendor_ros2]
 path   = "."
