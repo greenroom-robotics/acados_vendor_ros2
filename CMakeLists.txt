@@ -75,6 +75,7 @@ if(${BUILD_ACADOS_TEMPLATE})
     acados_template
     PACKAGE_DIR ${ACADOS_PYTHON_INTERFACE_PCK_DIR}
   )
+  add_dependencies(ament_cmake_python_build_acados_template_egg acados_vendor_ros2)
   set(ACADOS_PYTHON_INTERFACE_PATH ${CMAKE_INSTALL_PREFIX}/${PYTHON_INSTALL_DIR}/acados_template) # Python package after install
   message(
     STATUS
